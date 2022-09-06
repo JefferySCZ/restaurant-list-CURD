@@ -3,6 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const expbhs = require('express-handlebars')
 const Restaurant = require('./models/Restaurant')
+const bodyParse = require('body-parser')
+const bodyParser = require('body-parser')
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -30,17 +32,26 @@ const restaurantList = require('./restaurant.json').results
 app.engine('handlebars', expbhs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //routes  setting
 /// main page
-// app.get('/', (req, res) => {
-//   res.render('index', { restaurants: restaurantList })
-// })
-
 app.get('/', (req, res) => {
   Restaurant.find() // get all data from Restaurant model
     .lean() // change mongoose 's model object to clean JS array
     .then((restaurantsData) => res.render('index', { restaurantsData }))
+    .catch((err) => console.log(err))
+})
+
+//write in new restaurant in index
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  return Restaurant.create({ name }) // take data from req.body
+    .then(() => res.redirect('/')) // back to main page after create
     .catch((err) => console.log(err))
 })
 
