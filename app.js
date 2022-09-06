@@ -49,8 +49,7 @@ app.get('/restaurants/new', (req, res) => {
 })
 
 app.post('/restaurants', (req, res) => {
-  const name = req.body.name
-  return Restaurant.create({ name }) // take data from req.body
+  return Restaurant.create(req.body) // take data from req.body
     .then(() => res.redirect('/')) // back to main page after create
     .catch((err) => console.log(err))
 })
