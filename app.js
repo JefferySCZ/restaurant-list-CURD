@@ -1,7 +1,9 @@
 //require packages used in the project
 const express = require('express')
 const mongoose = require('mongoose')
-console.log(process.env.MONGODB_URI)
+const expbhs = require('express-handlebars')
+const Restaurant = require('./models/Restaurant')
+
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -21,9 +23,6 @@ db.once('open', () => {
 const app = express()
 const port = 3000
 
-//require express-handlebars
-const expbhs = require('express-handlebars')
-
 //require json
 const restaurantList = require('./restaurant.json').results
 
@@ -34,8 +33,15 @@ app.use(express.static('public'))
 
 //routes  setting
 /// main page
+// app.get('/', (req, res) => {
+//   res.render('index', { restaurants: restaurantList })
+// })
+
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList })
+  Restaurant.find() // get all data from Restaurant model
+    .lean() // change mongoose 's model object to clean JS array
+    .then((restaurantsData) => res.render('index', { restaurantsData }))
+    .catch((err) => console.log(err))
 })
 
 ///render show by id
