@@ -3,7 +3,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const expbhs = require('express-handlebars')
 const Restaurant = require('./models/Restaurant')
-const bodyParse = require('body-parser')
 const bodyParser = require('body-parser')
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -46,6 +45,15 @@ app.get('/', (req, res) => {
 //write in new restaurant in index
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
+})
+
+// get the details of restaurants
+app.get('/restaurants/:restaurantId', (req, res) => {
+  const restaurantId = req.params.restaurantId
+  Restaurant.findById(restaurantId)
+    .lean()
+    .then((restaurantData) => res.render('details', { restaurantData }))
+    .catch((err) => console.log(err))
 })
 
 app.post('/restaurants', (req, res) => {
