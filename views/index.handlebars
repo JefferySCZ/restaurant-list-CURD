@@ -36,7 +36,7 @@
     <div class='col-md-10 col-12 mx-auto'>
       <div class='card-columns'>
         {{#each restaurantsData}}
-          <a href='/restaurants/{{this.id}}' class='text-secondary'>
+          <a href='/restaurants/{{this._id}}' class='text-secondary'>
             <div class='card mb-3'>
               <img
                 class='card-img-top'
@@ -57,20 +57,20 @@
                 </span>
               </div>
             </div>
-            <div class="card-footer d-flex justify-content-end flex-wrap">
-              <a href="/restaurants/{{this._id}}/edit"><button
-                  class="btn btn-link btn-sm"
+            <div class='card-footer d-flex justify-content-end flex-wrap'>
+              <a href='/restaurants/{{this._id}}/edit'><button
+                  class='btn btn-link btn-sm'
                 >Edit</button></a>
-              <a href="/restaurants/{{this._id}}"><button
-                  class="btn btn-link btn-sm"
+              <a href='/restaurants/{{this._id}}'><button
+                  class='btn btn-link btn-sm'
                 >Details</button></a>
               <form
-                action="/restaurants/{{this._id}}?_method=DELETE"
-                method="POST"
+                action='/restaurants/{{this._id}}?_method=DELETE'
+                method='POST'
               >
                 <button
-                  type="submit"
-                  class="btn btn-danger btn-sm text-white"
+                  type='submit'
+                  class='btn btn-danger btn-sm text-white'
                 >delete</button>
               </form>
             </div>

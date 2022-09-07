@@ -56,9 +56,26 @@ app.get('/restaurants/:restaurantId', (req, res) => {
     .catch((err) => console.log(err))
 })
 
+// Create a new restaurant
 app.post('/restaurants', (req, res) => {
   return Restaurant.create(req.body) // take data from req.body
     .then(() => res.redirect('/')) // back to main page after create
+    .catch((err) => console.log(err))
+})
+
+// Edit a restaurant detail
+app.get('/restaurants/:restaurantId/edit', (req, res) => {
+  const restaurantId = req.params.restaurantId
+  Restaurant.findById(restaurantId)
+    .lean()
+    .then((restaurantData) => res.render('edit', { restaurantData }))
+    .catch((err) => console.log(err))
+})
+
+app.post('/restaurants/:restaurantId', (req, res) => {
+  const restaurantId = req.params.restaurantId
+  Restaurant.findByIdAndUpdate(restaurantId, req.body)
+    .then(() => res.redirect(`/restaurants/${restaurantId}`))
     .catch((err) => console.log(err))
 })
 
