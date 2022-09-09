@@ -102,18 +102,16 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 app.get('/search/', (req, res) => {
   const keyword = req.query.keyword.trim()
 
-  const filterRestaurants = restaurantList.filter(
-    (item) =>
-      item.name.toLowerCase().includes(keyword.toLowerCase()) ||
-      item.category.includes(keyword)
-  )
-
-  //result cant find
-  if (filterRestaurants.length === 0) {
-    res.render('notFound', { keyword })
-  } else {
-    res.render('index', { restaurants: filterRestaurants, keyword })
-  }
+  Restaurant.find()
+    .lean()
+    .then((restaurantData) => {
+      const filterRestaurantsData = restaurantData.filter((data) =>
+        data.name.toLowerCase().includes(keyword)
+      )
+      res
+        .render('index', { restaurantsData: filterRestaurantsData, keyword })
+        .catch((err) => console.log(err))
+    })
 })
 
 app.listen(port, () => {

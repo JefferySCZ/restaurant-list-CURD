@@ -34,44 +34,52 @@
 <div class='container mt-5'>
   <div class='row'>
     <div class='col-md-10 col-12 mx-auto'>
-      <div class='card-columns'>
+      <div class='card-group'>
         {{#each restaurantsData}}
-          <a href='/restaurants/{{this._id}}' class='text-secondary'>
-            <div class='card mb-3'>
-              <img
-                class='card-img-top'
-                src='{{this.image}}'
-                alt='{{this.name}}'
-              />
-              <div class='card-body p-3'>
-                <h6 class='card-title mb-1'>{{this.name}}</h6>
+          <div class='col-md4 p-2'>
+            <a href='/restaurants/{{this._id}}' class='text-secondary'>
+              <div class='card mb-3'>
+                <img
+                  class='card-img-top'
+                  src='{{this.image}}'
+                  alt='{{this.name}}'
+                />
+                <div class='card-body p-3'>
+                  <h6 class='card-title mb-1'>{{this.name}}</h6>
 
-                <div class='restaurant-category mb-1'>
-                  <i class='fas fa-utensils pr-2'></i>
-                  {{this.category}}
+                  <div class='restaurant-category mb-1'>
+                    <i class='fas fa-utensils pr-2 p-1'></i>
+                    {{this.category}}
+                  </div>
+
+                  <span
+                    class='badge rounded-pill bg-warning font-weight-normal'
+                  >
+                    {{this.rating}}
+                    <i class='fas fa-star fa-xs'></i>
+                  </span>
                 </div>
 
-                <span class='badge badge-pill badge-danger font-weight-normal'>
-                  {{this.rating}}
-                  <i class='fas fa-star fa-xs'></i>
-                </span>
+                <div class='card-footer d-flex justify-content-end flex-wrap'>
+                  <a href='/restaurants/{{this._id}}/edit'><button
+                      class='btn btn-link btn-sm'
+                    >Edit</button></a>
+                  <a href='/restaurants/{{this._id}}'><button
+                      class='btn btn-link btn-sm'
+                    >Details</button></a>
+                  <form
+                    action='/restaurants/{{this._id}}?_method=DELETE'
+                    method='POST'
+                  >
+                    <button
+                      type='submit'
+                      class='btn btn-danger btn-sm text-white'
+                    >delete</button>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div class='card-footer d-flex justify-content-end flex-wrap'>
-              <a href='/restaurants/{{this._id}}/edit'><button
-                  class='btn btn-link btn-sm'
-                >Edit</button></a>
-              <a href='/restaurants/{{this._id}}'><button
-                  class='btn btn-link btn-sm'
-                >Details</button></a>
-              <form action='/restaurants/{{this._id}}/delete' method='POST'>
-                <button
-                  type='submit'
-                  class='btn btn-danger btn-sm text-white'
-                >Delete</button>
-              </form>
-            </div>
-          </a>
+            </a>
+          </div>
         {{/each}}
       </div>
     </div>
