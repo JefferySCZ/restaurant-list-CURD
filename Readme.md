@@ -2,10 +2,6 @@
 
 屬於自己的餐廳口袋名單，瀏覽、搜尋、更多資訊一站搞定。
 
-### 實際截圖
-
-![image](https://github.com/JefferySCZ/Restaurant_List/blob/main/image/2-3%20Project.png?raw=true)
-
 <br />
 
 ### 功能介紹
@@ -17,6 +13,10 @@
 | 連結 | 貼心連結所選餐廳的地址到 Google 地圖      |
 | 搜尋 | 以店名或料理類別搜尋特定餐廳              |
 
+- 新增餐廳
+- 編輯餐廳
+- 刪除餐廳
+
 <br />
 <br />
 
@@ -27,6 +27,9 @@
 - Express-Handlebars 3.0.0
 - Bootstrap 4.3.1
 - Font-awesome 5.8.1
+- MongoDB
+- mongoose": "^5.9.7"
+
   <br />
   <br />
 
