@@ -72,10 +72,20 @@ app.get('/restaurants/:restaurantId/edit', (req, res) => {
     .catch((err) => console.log(err))
 })
 
+// Update Restaurant details
 app.post('/restaurants/:restaurantId', (req, res) => {
   const restaurantId = req.params.restaurantId
   Restaurant.findByIdAndUpdate(restaurantId, req.body)
     .then(() => res.redirect(`/restaurants/${restaurantId}`))
+    .catch((err) => console.log(err))
+})
+
+// Delete Restaurant
+app.post('/restaurants/:restaurantId/delete', (req, res) => {
+  const restaurantId = req.params.restaurantId
+  Restaurant.findByIdAndDelete(restaurantId)
+    .then((restaurantData) => restaurantData.remove())
+    .then(() => res.redirect('/'))
     .catch((err) => console.log(err))
 })
 
