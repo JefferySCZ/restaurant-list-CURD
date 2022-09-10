@@ -1,4 +1,4 @@
-<h1 class='mb-1 restaurant-show-title'>{{restaurantData.name}}</h1>
+<h1 class='mb-1 restaurant-show-title'>{{restaurantsData.name}}</h1>
 <div class='container'>
   <div class='row'>
     <div class='col-12 col-md-10 mx-auto'>
@@ -8,7 +8,7 @@
           <i class='fas fa-utensils pr-2'></i>
           類別：
         </span>
-        {{restaurantData.category}}
+        {{restaurantsData.category}}
       </p>
 
       <p class='mb-1'>
@@ -16,7 +16,7 @@
           <i class='fas fa-map-marker-alt pr-2'></i>
           地址：
         </span>
-        {{restaurantData.location}}
+        {{restaurantsData.location}}
         <a
           href='{{restaurantData.google_map}}'
           class='text-secondary'
@@ -31,17 +31,17 @@
           <i class='fas fa-mobile-alt pr-2'></i>
           電話：
         </span>
-        {{restaurantData.phone}}
+        {{restaurantsData.phone}}
       </p>
 
       <p class='mb-5'>
-        {{restaurantData.description}}
+        {{restaurantsData.description}}
       </p>
 
       <img
         class='rounded mx-auto d-block mb-4 w-100'
-        src='{{restaurantData.image}}'
-        alt='{{restaurantData.name}}'
+        src='{{restaurantsData.image}}'
+        alt='{{restaurantsData.name}}'
         style='max-width: 600px;'
       />
     </div>

@@ -68,8 +68,9 @@
                       class='btn btn-link btn-sm'
                     >Details</button></a>
                   <form
-                    action='/restaurants/{{this._id}}?_method=DELETE'
+                    action='/restaurants/{{this._id}}/delete'
                     method='POST'
+                    style='display: inline;'
                   >
                     <button
                       type='submit'

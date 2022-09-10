@@ -24,9 +24,6 @@ db.once('open', () => {
 const app = express()
 const port = 3000
 
-//require json
-const restaurantList = require('./restaurant.json').results
-
 //setting template engine
 app.engine('handlebars', expbhs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -52,7 +49,7 @@ app.get('/restaurants/:restaurantId', (req, res) => {
   const restaurantId = req.params.restaurantId
   Restaurant.findById(restaurantId)
     .lean()
-    .then((restaurantData) => res.render('details', { restaurantData }))
+    .then((restaurantsData) => res.render('details', { restaurantsData }))
     .catch((err) => console.log(err))
 })
 
@@ -68,7 +65,7 @@ app.get('/restaurants/:restaurantId/edit', (req, res) => {
   const restaurantId = req.params.restaurantId
   Restaurant.findById(restaurantId)
     .lean()
-    .then((restaurantData) => res.render('edit', { restaurantData }))
+    .then((restaurantsData) => res.render('edit', { restaurantsData }))
     .catch((err) => console.log(err))
 })
 
@@ -84,18 +81,9 @@ app.post('/restaurants/:restaurantId', (req, res) => {
 app.post('/restaurants/:restaurantId/delete', (req, res) => {
   const restaurantId = req.params.restaurantId
   Restaurant.findByIdAndDelete(restaurantId)
-    .then((restaurantData) => restaurantData.remove())
+    .then((restaurantsData) => restaurantsData.remove())
     .then(() => res.redirect('/'))
     .catch((err) => console.log(err))
-})
-
-///render show by id
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
-  const restaurant = restaurantList.find(
-    (restaurant) => restaurant.id.toString() === restaurant_id
-  )
-  res.render('show', { restaurant: restaurant })
 })
 
 //search routes
@@ -104,8 +92,8 @@ app.get('/search/', (req, res) => {
 
   Restaurant.find()
     .lean()
-    .then((restaurantData) => {
-      const filterRestaurantsData = restaurantData.filter((data) =>
+    .then((restaurantsData) => {
+      const filterRestaurantsData = restaurantsData.filter((data) =>
         data.name.toLowerCase().includes(keyword)
       )
       res
