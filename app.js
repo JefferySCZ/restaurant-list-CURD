@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const expbhs = require('express-handlebars')
 const Restaurant = require('./models/Restaurant')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -29,6 +31,7 @@ app.engine('handlebars', expbhs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 //routes  setting
 /// main page
