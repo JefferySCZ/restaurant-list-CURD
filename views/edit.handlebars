@@ -1,6 +1,6 @@
-<h1 class='mb-1 restaurant-show-title'>編輯餐廳 - {{restaurantData.name}}</h1>
+<h1 class='mb-1 restaurant-show-title'>編輯餐廳 - {{restaurantsData.name}}</h1>
 <div class='container'>
-  <form action='/restaurants/{{restaurantData._id}}?_method=PUT' method='POST'>
+  <form action='/restaurants/{{restaurantsData._id}}?_method=PUT' method='POST'>
     <div class='mb-3'>
       <label for='name' class='form-label'>店名<span
           class='text-danger'
@@ -11,7 +11,7 @@
         id='name'
         placeholder='尼龍咖啡館'
         name='name'
-        value='{{restaurantData.name}}'
+        value='{{restaurantsData.name}}'
         required
       />
     </div>
@@ -25,7 +25,7 @@
         id='name_en'
         placeholder='Nylon Coffee Roasters'
         name='name_en'
-        value='{{restaurantData.name_en}}'
+        value='{{restaurantsData.name_en}}'
         required
       />
     </div>
@@ -40,7 +40,7 @@
         placeholder='咖啡'
         list='categoryOptions'
         name='category'
-        value='{{restaurantData.category}}'
+        value='{{restaurantsData.category}}'
         required
       />
       {{! 使用datalist，讓使用者可選擇或自行輸入 }}
@@ -61,7 +61,7 @@
         class='form-control'
         id='image'
         name='image'
-        value='{{restaurantData.image}}'
+        value='{{restaurantsData.image}}'
         required
       />
     </div>
@@ -75,7 +75,7 @@
         id='location'
         placeholder='4 Everton Park, #01-40, Singapore 080004'
         name='location'
-        value='{{restaurantData.location}}'
+        value='{{restaurantsData.location}}'
         required
       />
     </div>
@@ -89,7 +89,7 @@
         id='phone'
         placeholder='+65 6220 2330'
         name='phone'
-        value='{{restaurantData.phone}}'
+        value='{{restaurantsData.phone}}'
         required
       />
     </div>
@@ -102,7 +102,7 @@
         class='form-control'
         id='google_map'
         name='google_map'
-        value='{{restaurantData.google_map}}'
+        value='{{restaurantsData.google_map}}'
         required
       />
     </div>
@@ -118,7 +118,7 @@
         max='5'
         step='0.1'
         name='rating'
-        value='{{restaurantData.rating}}'
+        value='{{restaurantsData.rating}}'
         required
       />
     </div>
@@ -132,7 +132,7 @@
         rows='3'
         name='description'
         required
-      >{{restaurantData.description}}</textarea>
+      >{{restaurantsData.description}}</textarea>
     </div>
     <div class='text-center'>
       <button type='submit' class='btn btn-primary'>
