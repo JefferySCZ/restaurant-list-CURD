@@ -17,6 +17,12 @@
 - 編輯餐廳
 - 刪除餐廳
 
+# New Update
+
+- 參考 RESTful 設計，運用 HTTP 動詞來讓路由帶有語義
+- 使用 express.Router 獨立路由器，並規劃路由模組
+- 採用 JavaScript Standard style
+
 <br />
 <br />
 
@@ -29,6 +35,8 @@
 - Font-awesome 5.8.1
 - MongoDB
 - mongoose": "^5.9.7"
+- method-override: 3.0.0"
+- body-parser: 1.20.0
 
   <br />
   <br />
