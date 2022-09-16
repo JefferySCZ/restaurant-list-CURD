@@ -49,10 +49,14 @@
 
 3. 在本地開啟之後，透過終端機進入資料夾，輸入： `npm install`
 
-4. 安裝完畢後，繼續輸入： `npm run dev`
+4. 安裝 npm 及相關開發套件
 
-5. 若看見此行訊息則代表順利運行， `express is listening on localhost:3000`
+5. 設定環境變數 MONGODB_URI=mongodb+srv://<Your MongoDB Account>:<Your MongoDB Password>@cluster0.advhwkw.mongodb.net/<Your MongoDB Table>?retryWrites=true&w=majority
 
-6. 接下來就可以打開瀏覽器進入以下網址 [http://localhost:3000](http://localhost:3000) 開始使用囉！
+6. 安裝完畢後，繼續輸入： `npm run dev`
 
-7. 若欲暫停使用，按下 `ctrl + c` 即可
+7. 若看見此行訊息則代表順利運行， `Listening on http://localhost:3000`
+
+8. 接下來就可以打開瀏覽器進入以下網址 [http://localhost:3000](http://localhost:3000) 開始使用囉！
+
+9. 若欲暫停使用，按下 `ctrl + c` 即可
