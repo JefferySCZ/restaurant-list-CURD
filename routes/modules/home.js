@@ -20,10 +20,9 @@ router.get('/search', (req, res) => {
       const filterRestaurantsData = restaurantsData.filter((data) =>
         data.name.toLowerCase().includes(keyword)
       )
-      res
-        .render('index', { restaurantsData: filterRestaurantsData, keyword })
-        .catch((err) => console.log(err))
+      res.render('index', { restaurantsData: filterRestaurantsData, keyword })
     })
+    .catch((err) => console.log(err))
 })
 
 module.exports = router
