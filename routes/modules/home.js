@@ -17,12 +17,19 @@ router.get('/search', (req, res) => {
   Restaurant.find()
     .lean()
     .then((restaurantsData) => {
-      const filterRestaurantsData = restaurantsData.filter((data) =>
-        data.name.toLowerCase().includes(keyword)
-      )
+      const filterRestaurantsData = restaurantsData.filter((data) => {
+        const NameMatched = data.name
+          .toLowerCase()
+          .includes(keyword.toLowerCase())
+        const CategoryMatched = data.category
+          .toLowerCase()
+          .includes(keyword.toLowerCase())
+        return NameMatched || CategoryMatched
+      })
+
       res.render('index', { restaurantsData: filterRestaurantsData, keyword })
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.error(err))
 })
 
 module.exports = router
